@@ -9,13 +9,13 @@ class Message {
   final String content;
   final DateTime timestamp;
 
-  factory Message.fromJson(Map<String, dynamic> json) => Message(
-        sender: json['sender'] as String? ?? '',
-        content: json['content'] as String? ?? '',
-        timestamp: json['timestamp'] as DateTime? ?? DateTime(1970, 1, 1, 0, 0),
+  factory Message.fromMap(Map<String, dynamic> map) => Message(
+        sender: map['sender'] as String? ?? '',
+        content: map['content'] as String? ?? '',
+        timestamp: map['timestamp'] as DateTime? ?? DateTime(1970, 1, 1, 0, 0),
       );
 
-  Map<String, dynamic> toJson() => <String, dynamic>{
+  Map<String, dynamic> toMap() => <String, dynamic>{
         'sender': sender,
         'content': content,
         'timestamp': timestamp

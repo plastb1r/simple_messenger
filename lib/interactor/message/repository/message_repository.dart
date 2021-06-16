@@ -10,7 +10,7 @@ class MessageRepository {
   final FirebaseFirestore _source;
 
   Future<void> sendMessage(Message message) =>
-      _source.collection('messages').add(message.toJson());
+      _source.collection('messages').add(message.toMap());
 
   Stream<List<Message>> getMessages() => _source
       .collection('messages')
@@ -33,7 +33,7 @@ class MessageRepository {
     QueryDocumentSnapshot<Map<String, dynamic>> doc,
   ) {
     final map = doc.data();
-    final message = Message.fromJson(map);
+    final message = Message.fromMap(map);
 
     return message;
   }
