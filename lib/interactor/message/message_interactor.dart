@@ -1,6 +1,12 @@
 import '../../data/message.dart';
+import 'repository/message_repository.dart';
 
-abstract class MessageInteractor {
-  Stream<List<Message>> getMessages();
-  Future<void> sendMessage();
+class MessageInteractor {
+  const MessageInteractor({required this.repo});
+
+  final MessageRepository repo;
+
+  Stream<List<Message>> getMessages() => repo.getMessages();
+
+  Future<void> sendMessage(Message message) => repo.sendMessage(message);
 }
