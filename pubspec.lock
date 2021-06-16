@@ -162,7 +162,7 @@ packages:
       name: relation
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.0"
+    version: "4.0.0-dev.1"
   rxdart:
     dependency: transitive
     description:
@@ -203,6 +203,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
+  surf_injector:
+    dependency: "direct main"
+    description:
+      name: surf_injector
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
+  surf_mwwm:
+    dependency: "direct main"
+    description:
+      name: surf_mwwm
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.1"
   term_glyph:
     dependency: transitive
     description:

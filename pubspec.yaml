@@ -6,7 +6,7 @@ publish_to: "none"
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -15,7 +15,9 @@ dependencies:
   cupertino_icons: ^1.0.0
   firebase_core: ^1.3.0
   mwwm: ^2.0.0
-  relation: ^3.0.0
+  relation: ^4.0.0-dev.1
+  surf_injector: ^1.0.0
+  surf_mwwm: ^2.0.0
 
 dev_dependencies:
   flutter_test:
