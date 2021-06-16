@@ -7,11 +7,10 @@ import 'pick_name_screen_wm.dart';
 class PickNameScreen extends MwwmWidget<PickNameScreenComponent> {
   PickNameScreen()
       : super(
+          widgetModelBuilder: (_) =>
+              PickNameScreenWidgetModel(const WidgetModelDependencies()),
           dependenciesBuilder: (context) => PickNameScreenComponent(context),
           widgetStateBuilder: () => _PickNameScreenState(),
-          widgetModelBuilder: (_) => PickNameScreenWidgetModel(
-            const WidgetModelDependencies(),
-          ),
         );
 }
 
