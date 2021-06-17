@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:mwwm/mwwm.dart';
 
+import '../../../interactor/message/message_interactor.dart';
+
 class GlobalChatScreenWidgetModel extends WidgetModel {
   GlobalChatScreenWidgetModel(
-    WidgetModelDependencies baseDependencies,
-    this.textController,
-  ) : super(baseDependencies);
+    WidgetModelDependencies baseDependencies, {
+    required this.messageInteractor,
+    required this.messageController,
+  }) : super(baseDependencies);
 
-  final TextEditingController textController;
+  final MessageInteractor messageInteractor;
+  final TextEditingController messageController;
 
   @override
   void dispose() {
-    textController.dispose();
+    messageController.dispose();
     super.dispose();
   }
 }

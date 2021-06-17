@@ -1,62 +1,34 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:mwwm/mwwm.dart';
+import 'package:provider/provider.dart';
+
+import 'interactor/message/message_interactor.dart';
+import 'interactor/message/repository/message_repository.dart';
+import 'ui/screens/choose_name/pick_name_screen.dart';
+import 'utils/default_error_handler.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(App());
 }
 
-class MyApp extends StatelessWidget {
+class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
-        home: const MyHomePage(title: 'Flutter Demo Home Page'),
-      );
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({required this.title});
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-
-  final String title;
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const Text(
-                'You have pushed the button this many times:',
+        home: MultiProvider(
+          providers: [
+            Provider(
+              create: (_) => WidgetModelDependencies(
+                errorHandler: DefaultErrorHandler(),
               ),
-              Text(
-                '$_counter',
-                style: Theme.of(context).textTheme.headline4,
+            ),
+            Provider(
+              create: (_) => MessageInteractor(
+                repo: MessageRepository(FirebaseFirestore.instance),
               ),
-            ],
-          ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: _incrementCounter,
-          tooltip: 'Increment',
-          child: const Icon(Icons.add),
+            ),
+          ],
+          child: PickNameScreen(),
         ),
       );
 }

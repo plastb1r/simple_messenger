@@ -3,15 +3,15 @@ import 'package:mwwm/mwwm.dart';
 
 class PickNameScreenWidgetModel extends WidgetModel {
   PickNameScreenWidgetModel(
-    WidgetModelDependencies baseDependencies,
-    this.textController,
-  ) : super(baseDependencies);
+    WidgetModelDependencies baseDependencies, {
+    required this.nameController,
+  }) : super(baseDependencies);
 
-  final TextEditingController textController;
+  final TextEditingController nameController;
 
   @override
   void dispose() {
-    textController.dispose();
+    nameController.dispose();
     super.dispose();
   }
 }
