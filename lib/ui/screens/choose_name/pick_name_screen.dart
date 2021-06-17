@@ -1,20 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:surf_mwwm/surf_mwwm.dart';
+import 'package:mwwm/mwwm.dart';
 
-import 'pick_name_screen_component.dart';
+import '../../../utils/default_error_handler.dart';
 import 'pick_name_screen_wm.dart';
 
-class PickNameScreen extends MwwmWidget<PickNameScreenComponent> {
+class PickNameScreen extends CoreMwwmWidget<PickNameScreenWidgetModel> {
   PickNameScreen()
       : super(
-          widgetModelBuilder: (_) =>
-              PickNameScreenWidgetModel(const WidgetModelDependencies()),
-          dependenciesBuilder: (context) => PickNameScreenComponent(context),
-          widgetStateBuilder: () => _PickNameScreenState(),
+          widgetModelBuilder: (context) => PickNameScreenWidgetModel(
+            WidgetModelDependencies(
+              errorHandler: DefaultErrorHandler(),
+            ),
+            TextEditingController(),
+          ),
         );
+
+  @override
+  _PickNameScreenState createWidgetState() => _PickNameScreenState();
 }
 
-class _PickNameScreenState extends OldWidgetState<PickNameScreenWidgetModel> {
+class _PickNameScreenState
+    extends WidgetState<PickNameScreen, PickNameScreenWidgetModel> {
   @override
   Widget build(BuildContext context) => Container();
 }

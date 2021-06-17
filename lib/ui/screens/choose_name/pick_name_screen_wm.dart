@@ -1,6 +1,17 @@
+import 'package:flutter/material.dart';
 import 'package:mwwm/mwwm.dart';
 
 class PickNameScreenWidgetModel extends WidgetModel {
-  PickNameScreenWidgetModel(WidgetModelDependencies baseDependencies)
-      : super(baseDependencies);
+  PickNameScreenWidgetModel(
+    WidgetModelDependencies baseDependencies,
+    this.textController,
+  ) : super(baseDependencies);
+
+  final TextEditingController textController;
+
+  @override
+  void dispose() {
+    textController.dispose();
+    super.dispose();
+  }
 }

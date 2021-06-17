@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:surf_mwwm/surf_mwwm.dart';
+import 'package:mwwm/mwwm.dart';
 
-import 'global_chat_screen_component.dart';
+import '../../../utils/default_error_handler.dart';
 import 'global_chat_screen_wm.dart';
 
-class GlobalChatScreen extends MwwmWidget<GlobalChatScreenComponent> {
+class GlobalChatScreen extends CoreMwwmWidget<GlobalChatScreenWidgetModel> {
   GlobalChatScreen()
       : super(
-          dependenciesBuilder: (context) => GlobalChatScreenComponent(context),
-          widgetStateBuilder: () => _GlobalChatScreenState(),
-          widgetModelBuilder: (_) => GlobalChatScreenWidgetModel(
-            const WidgetModelDependencies(),
+          widgetModelBuilder: (context) => GlobalChatScreenWidgetModel(
+            WidgetModelDependencies(
+              errorHandler: DefaultErrorHandler(),
+            ),
+            TextEditingController(),
           ),
         );
+
+  @override
+  _GlobalChatScreenState createWidgetState() => _GlobalChatScreenState();
 }
 
 class _GlobalChatScreenState
-    extends OldWidgetState<GlobalChatScreenWidgetModel> {
+    extends WidgetState<GlobalChatScreen, GlobalChatScreenWidgetModel> {
   @override
   Widget build(BuildContext context) => Container();
 }
