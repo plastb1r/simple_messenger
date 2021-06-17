@@ -6,7 +6,7 @@ import '../../../interactor/message/message_interactor.dart';
 import 'global_chat_screen_wm.dart';
 
 class GlobalChatScreen extends CoreMwwmWidget<GlobalChatScreenWidgetModel> {
-  GlobalChatScreen()
+  GlobalChatScreen({required this.username})
       : super(
           widgetModelBuilder: (context) {
             final interactor = context.read<MessageInteractor>();
@@ -14,11 +14,14 @@ class GlobalChatScreen extends CoreMwwmWidget<GlobalChatScreenWidgetModel> {
 
             return GlobalChatScreenWidgetModel(
               wmDependencies,
+              username: username,
               messageInteractor: interactor,
               messageController: TextEditingController(),
             );
           },
         );
+
+  final String username;
 
   @override
   _GlobalChatScreenState createWidgetState() => _GlobalChatScreenState();

@@ -8,9 +8,7 @@ import 'interactor/message/repository/message_repository.dart';
 import 'ui/screens/choose_name/pick_name_screen.dart';
 import 'utils/default_error_handler.dart';
 
-void main() {
-  runApp(App());
-}
+void main() => runApp(App());
 
 class App extends StatelessWidget {
   @override
