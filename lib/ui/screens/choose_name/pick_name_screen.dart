@@ -11,10 +11,7 @@ class PickNameScreen extends CoreMwwmWidget<PickNameScreenWidgetModel> {
           widgetModelBuilder: (context) {
             final wmDependencies = context.read<WidgetModelDependencies>();
 
-            return PickNameScreenWidgetModel(
-              wmDependencies,
-              nameController: TextEditingController(),
-            );
+            return PickNameScreenWidgetModel(wmDependencies);
           },
         );
 
