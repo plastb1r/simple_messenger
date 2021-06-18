@@ -66,7 +66,8 @@ class _GlobalChatScreenState
 
   Widget _messageListBuilder(BuildContext context, List<Message>? messages) {
     if (messages != null && messages.isNotEmpty) {
-      return ListView.builder(
+      final list = ListView.builder(
+        controller: wm.scrollController,
         itemCount: messages.length,
         itemBuilder: (_, index) {
           final message = messages[index];
@@ -89,6 +90,10 @@ class _GlobalChatScreenState
           );
         },
       );
+
+      Future<void>.microtask(wm.scrollToEnd);
+
+      return list;
     } else {
       return const Center(
         child: Text('Пусто'),

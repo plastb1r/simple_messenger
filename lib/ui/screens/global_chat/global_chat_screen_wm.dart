@@ -17,6 +17,7 @@ class GlobalChatScreenWidgetModel extends WidgetModel {
   final MessageInteractor _messageInteractor;
 
   final messageController = TextEditingController();
+  final scrollController = ScrollController();
   final sendMessageAction = VoidAction();
   final messageListState = StreamedState<List<Message>>([]);
 
@@ -24,20 +25,27 @@ class GlobalChatScreenWidgetModel extends WidgetModel {
   void onBind() {
     super.onBind();
 
-    subscribe<void>(sendMessageAction.stream, (_) => _sendMessage);
+    subscribe<void>(sendMessageAction.stream, (_) => _sendMessage());
     subscribe<List<Message>>(_messageInteractor.getMessages(), _viewMessages);
   }
 
-  void _sendMessage() => _messageInteractor.sendMessage(
-        Message(
-          sender: username,
-          content: messageController.text,
-          sendTime: DateTime.now(),
-        ),
-      );
+  void scrollToEnd() =>
+      scrollController.jumpTo(scrollController.position.maxScrollExtent);
 
-  void _viewMessages(List<Message> messages) =>
-      messageListState.accept(messages);
+  void _sendMessage() {
+    _messageInteractor.sendMessage(
+      Message(
+        sender: username,
+        content: messageController.text,
+        sendTime: DateTime.now(),
+      ),
+    );
+    messageController.clear();
+  }
+
+  void _viewMessages(List<Message> messages) {
+    messageListState.accept(messages);
+  }
 
   @override
   void dispose() {
