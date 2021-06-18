@@ -31,6 +31,7 @@ class GlobalChatScreenWidgetModel extends WidgetModel {
         Message(
           sender: username,
           content: messageController.text,
+          timestamp: DateTime.now(),
         ),
       );
 
