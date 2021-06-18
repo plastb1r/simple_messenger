@@ -14,7 +14,7 @@ class MessageRepository {
 
   Stream<List<Message>> getMessages() => _source
       .collection('messages')
-      .orderBy('timestamp', descending: true)
+      .orderBy('timestamp')
       .snapshots()
       .asyncMap<List<Message>>(_snapshotParser);
 

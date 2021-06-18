@@ -64,33 +64,35 @@ class _GlobalChatScreenState
         ),
       );
 
-  Widget _messageListBuilder(BuildContext context, List<Message>? messages) =>
-      ListView.builder(
+  Widget _messageListBuilder(BuildContext context, List<Message>? messages) {
+    if (messages != null && messages.isNotEmpty) {
+      return ListView.builder(
+        itemCount: messages.length,
         itemBuilder: (_, index) {
-          if (messages != null) {
-            final message = messages[index];
-            final time = message.timestamp;
+          final message = messages[index];
+          final time = message.sendTime;
 
-            return Align(
-              alignment: wm.username == message.sender
-                  ? Alignment.centerRight
-                  : Alignment.centerLeft,
-              child: Card(
-                margin: const EdgeInsets.all(16),
-                child: Column(
-                  children: [
-                    Text(message.sender),
-                    Text(message.content),
-                    Text('${time.hour}:${time.minute}'),
-                  ],
-                ),
+          return Align(
+            alignment: wm.username == message.sender
+                ? Alignment.centerRight
+                : Alignment.centerLeft,
+            child: Card(
+              margin: const EdgeInsets.all(16),
+              child: Column(
+                children: [
+                  Text(message.sender),
+                  Text(message.content),
+                  Text('${time.hour}:${time.minute}'),
+                ],
               ),
-            );
-          } else {
-            return const Center(
-              child: Text('Пусто'),
-            );
-          }
+            ),
+          );
         },
       );
+    } else {
+      return const Center(
+        child: Text('Пусто'),
+      );
+    }
+  }
 }

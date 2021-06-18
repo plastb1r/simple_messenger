@@ -23,6 +23,7 @@ class GlobalChatScreenWidgetModel extends WidgetModel {
   @override
   void onBind() {
     super.onBind();
+
     subscribe<void>(sendMessageAction.stream, (_) => _sendMessage);
     subscribe<List<Message>>(_messageInteractor.getMessages(), _viewMessages);
   }
@@ -31,7 +32,7 @@ class GlobalChatScreenWidgetModel extends WidgetModel {
         Message(
           sender: username,
           content: messageController.text,
-          timestamp: DateTime.now(),
+          sendTime: DateTime.now(),
         ),
       );
 
