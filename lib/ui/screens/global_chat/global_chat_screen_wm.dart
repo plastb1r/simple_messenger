@@ -18,13 +18,13 @@ class GlobalChatScreenWidgetModel extends WidgetModel {
 
   final messageController = TextEditingController();
   final scrollController = ScrollController();
+
   final sendMessageAction = VoidAction();
   final messageListState = StreamedState<List<Message>>([]);
 
   @override
   void onBind() {
     super.onBind();
-
     subscribe<void>(sendMessageAction.stream, (_) => _sendMessage());
     subscribe<List<Message>>(_messageInteractor.getMessages(), _viewMessages);
   }
