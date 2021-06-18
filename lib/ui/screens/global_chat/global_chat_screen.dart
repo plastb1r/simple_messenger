@@ -5,6 +5,7 @@ import 'package:relation/relation.dart';
 
 import '../../../data/message.dart';
 import '../../../interactor/message/message_interactor.dart';
+import '../../widgets/message_list_item.dart';
 import 'global_chat_screen_wm.dart';
 
 class GlobalChatScreen extends CoreMwwmWidget<GlobalChatScreenWidgetModel> {
@@ -71,22 +72,10 @@ class _GlobalChatScreenState
         itemCount: messages.length,
         itemBuilder: (_, index) {
           final message = messages[index];
-          final time = message.sendTime;
 
-          return Align(
-            alignment: wm.username == message.sender
-                ? Alignment.centerRight
-                : Alignment.centerLeft,
-            child: Card(
-              margin: const EdgeInsets.all(16),
-              child: Column(
-                children: [
-                  Text(message.sender),
-                  Text(message.content),
-                  Text('${time.hour}:${time.minute}'),
-                ],
-              ),
-            ),
+          return MessageListItem(
+            message: message,
+            isSender: wm.username == message.sender,
           );
         },
       );
